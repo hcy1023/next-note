@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import SidebarNoteItemContent from "@/components/SidebarNoteItemContent";
 export default function SidebarNoteItem({ noteId, note}) {
     const { title, content='', updateTime } = note;
+
     return (
         // 客户端组件
         <SidebarNoteItemContent

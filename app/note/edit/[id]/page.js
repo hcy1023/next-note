@@ -1,14 +1,12 @@
-// 单一笔记组件
-import Note from "@/components/note";
+// 单一笔记的编辑页面组件
+import NoteEditor from "@/components/NoteEditor";
 import { getNote } from "@/lib/redis";
 
-export default async function Page( { params }){
-    // 动态路由 获取笔记id
+export default async function EditPage({params}) {
     const noteId = params.id;
     const note = await getNote(noteId);
 
-    // Suspense效果更明显
-    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const sleep = ms => new Promise((r) => setTimeout(r, ms));
     await sleep(1000);
 
     if (note === null) {
@@ -21,5 +19,5 @@ export default async function Page( { params }){
         )
     }
 
-    return <Note noteId={noteId} note={note} />
+    return <NoteEditor noteId={noteId} initialTitle={note.title} initialBody={note.content} />
 }
