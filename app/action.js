@@ -7,8 +7,7 @@
 import { redirect } from "next/navigation";
 import { addNote, updateNote, delNote } from "@/lib/redis";
 import { revalidatePath } from "next/cache";
-
-const sleep = ms => new Promise((r) => setTimeout(r, ms));
+import { sleep } from "@/lib/utils";
 
 export async function saveNote(prevState,formData) {
     // 获取noteId
@@ -21,7 +20,7 @@ export async function saveNote(prevState,formData) {
     })
 
     // 模拟请求时间
-    sleep(2000);
+    await sleep(2000);
 
     if (noteId) {
         updateNote(noteId, data);
