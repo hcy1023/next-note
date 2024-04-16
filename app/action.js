@@ -20,17 +20,17 @@ export async function saveNote(prevState,formData) {
     })
 
     // 模拟请求时间
-    await sleep(2000);
+    await sleep(1000);
 
     if (noteId) {
         updateNote(noteId, data);
         revalidatePath('/', 'layout');
+        return { message: 'Edit Success!'}
     } else {
         const res = await addNote(data);
         revalidatePath('/', 'layout');
+        return { message: 'Add Success!'}
     }
-
-    return { message: 'Add Success!'}
 }
 
 export async function deleteNote(prevState, formData) {
